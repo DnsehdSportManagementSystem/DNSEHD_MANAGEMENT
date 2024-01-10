@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Ashion Template">
@@ -126,7 +126,7 @@
                           <ul class="dropdown-menu dropdown-menu-end">
                             <li>
 								<div class="alert alert-primary alert-dismissible" role="alert">
-                        			This is a primary dismissible alert — check it out!
+                        			ㅇㅇThis is a primary dismissible alert — check it out!
                         			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       			</div>
                             </li>
