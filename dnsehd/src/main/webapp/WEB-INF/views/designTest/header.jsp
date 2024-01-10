@@ -108,6 +108,57 @@
                             <li><a href="#"><i class="fa fa-solid fa-bell"></i>
                                 <div class="tip">2</div>
                             </a></li>
+                            
+                            
+                 <li class="nav-item lh-1 me-3 navbar-dropdown dropdown-user dropdown">
+                   
+                  <div class=" col-sm-6 col-12">
+                      <div class="d-flex">
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <i class="fa fa-solid fa-bell"></i>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+								<div class="alert alert-primary alert-dismissible" role="alert">
+                        			This is a primary dismissible alert — check it out!
+                        			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      			</div>
+                            </li>
+                            <li>
+								<div class="alert alert-primary alert-dismissible" role="alert">
+                        			This is a primary dismissible alert — check it out!
+                        			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      			</div>
+                            </li>
+                            <li>
+								<div class="alert alert-primary alert-dismissible" role="alert">
+                        			This is a primary dismissible alert — check it out!
+                        			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      			</div>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                  </div>
+                </li>                           
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <li><a href="mypage"><i class="fa fa-solid fa-user"></i>
                                 <div class="tip">2</div>
                             </a></li>

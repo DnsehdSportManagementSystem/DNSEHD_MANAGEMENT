@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -15,7 +17,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Account settings - Account | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>회원수정</title>
 
     <meta name="description" content="" />
 
@@ -45,14 +47,66 @@
 
     <!-- Helpers -->
     <script src="/admin/sneat/assets/vendor/js/helpers.js"></script>
+    <style type="text/css">
+      .layout-menu-fixed .layout-navbar-full .layout-menu,
+      .layout-page {
+        padding-top: 0px !important;
+      }
+      .content-wrapper {
+        padding-bottom: 0px !important;
+      }
+   </style>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/admin/sneat/assets/js/config.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script>
+
+   function execDaumPostcode() {
+       new daum.Postcode({
+           oncomplete: function(data) {
+               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+   
+               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+   
+               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+               if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                   extraRoadAddr += data.bname;
+               }
+               // 건물명이 있고, 공동주택일 경우 추가한다.
+               if (data.buildingName !== '' && data.apartment === 'Y'){
+                  extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+               }
+               // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+               if (extraRoadAddr !== ''){
+                   extraRoadAddr = ' (' + extraRoadAddr + ')';
+               }
+               // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+               if (fullRoadAddr !== ''){
+                   fullRoadAddr += extraRoadAddr;
+               }
+   
+               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+               document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+               document.getElementById('roadAddress').value = fullRoadAddr;
+               document.getElementById('jibunAddress').value = data.jibunAddress;
+   
+           }
+       }).open();
+   }   
+   </script>
   </head>
 
   <body>
+    <!-- Layout wrapper -->
+
         <jsp:include page="header.jsp"></jsp:include>
+
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
@@ -61,28 +115,60 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Profile Details</h5>
+                    <h2 class="card-header">회원수정</h2>
+                    <!-- 회원수정 -->
                     <hr class="my-0" />
                     <div class="card-body">
                       <form id="formAccountSettings" method="POST" onsubmit="return false">
                         <div class="row">
                           <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">First Name</label>
+                            <label for="memberId" class="form-label">회원 아이디</label>
                             <input
                               class="form-control"
                               type="text"
-                              id="firstName"
-                              name="firstName"
-                              value="John"
+                              id="memberId"
+                              name="memberId"
                               autofocus
                             />
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control" type="text" name="lastName" id="lastName" value="Doe" />
+                            <label for="lastName" class="form-label">회원 비밀번호</label>
+                            <input class="form-control" type="text" name="memberPw" id="memberPw" value="Doe" />
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
+                            <label for="organization" class="form-label">회원 이름</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="memberNm"
+                              name="memberNm"
+                              value="유저"
+                            />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="organization" class="form-label">성별</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="sex"
+                              name="sex"
+                              value="여"
+                            />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label class="form-label" for="phoneNumber">회원 전화번호</label>
+                            <div class="input-group input-group-merge">
+                              <input
+                                type="text"
+                                id="hp"
+                                name="hp"
+                                class="form-control"
+                                placeholder="010-1234-5678"
+                              />
+                            </div>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">회원 이메일</label>
                             <input
                               class="form-control"
                               type="text"
@@ -92,138 +178,83 @@
                               placeholder="john.doe@example.com"
                             />
                           </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="organization" class="form-label">Organization</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="organization"
-                              name="organization"
-                              value="ThemeSelection"
-                            />
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Phone Number</label>
-                            <div class="input-group input-group-merge">
-                              <span class="input-group-text">US (+1)</span>
-                              <input
-                                type="text"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                class="form-control"
-                                placeholder="202 555 0111"
-                              />
+                          <div class="col-lg-3 col-md-6 ">
+                                <div class="checkout__form__input">
+                                   <p>E-mail 수신 동의</p>
+                                </div>
+                                <input type="checkbox" id="emailConsent" name="emailConsent" value="y" checked/>
                             </div>
+                            <div class="col-lg-3 col-md-6 ">
+                                <div class="checkout__form__input">
+                                   <p>SMS 수신 동의</p>
+                                </div>
+                                <input type="checkbox" id="smsConsent" name="smsConsent" value="y" checked/>
+                            </div>
+                            <div class="mb-3 col-md-6">
                           </div>
+                            <div class="mb-3 col-md-6">
+                               <label for="email" class="form-label">주소</label>
+                            <input
+                              class="form-control"
+                              type="text"
+                              id="zipcode"
+                              name="zipcode"
+                              placeholder="231465"
+                            />
+                            
+                             </div>
+                             <div class="mb-3 col-md-6 mt-4">
+                             <input type="button" class="site-btn btn btn-primary me-2" onclick="javascript:execDaumPostcode()" value="검색">
+                             </div>
                           <div class="mb-3 col-md-6">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="state" class="form-label">State</label>
-                            <input class="form-control" type="text" id="state" name="state" placeholder="California" />
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="zipCode" class="form-label">Zip Code</label>
+                            <label for="zipCode" class="form-label">도로명 주소</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="zipCode"
-                              name="zipCode"
+                              id="roadAddress"
+                              name="roadAddress"
                               placeholder="231465"
                               maxlength="6"
                             />
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label class="form-label" for="country">Country</label>
-                            <select id="country" class="select2 form-select">
-                              <option value="">Select</option>
-                              <option value="Australia">Australia</option>
-                              <option value="Bangladesh">Bangladesh</option>
-                              <option value="Belarus">Belarus</option>
-                              <option value="Brazil">Brazil</option>
-                              <option value="Canada">Canada</option>
-                              <option value="China">China</option>
-                              <option value="France">France</option>
-                              <option value="Germany">Germany</option>
-                              <option value="India">India</option>
-                              <option value="Indonesia">Indonesia</option>
-                              <option value="Israel">Israel</option>
-                              <option value="Italy">Italy</option>
-                              <option value="Japan">Japan</option>
-                              <option value="Korea">Korea, Republic of</option>
-                              <option value="Mexico">Mexico</option>
-                              <option value="Philippines">Philippines</option>
-                              <option value="Russia">Russian Federation</option>
-                              <option value="South Africa">South Africa</option>
-                              <option value="Thailand">Thailand</option>
-                              <option value="Turkey">Turkey</option>
-                              <option value="Ukraine">Ukraine</option>
-                              <option value="United Arab Emirates">United Arab Emirates</option>
-                              <option value="United Kingdom">United Kingdom</option>
-                              <option value="United States">United States</option>
-                            </select>
+                            <label for="zipCode" class="form-label">지번 주소</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="jibunAddress"
+                              name="jibunAddress"
+                              placeholder="231465"
+                              maxlength="6"
+                            />
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label for="language" class="form-label">Language</label>
-                            <select id="language" class="select2 form-select">
-                              <option value="">Select Language</option>
-                              <option value="en">English</option>
-                              <option value="fr">French</option>
-                              <option value="de">German</option>
-                              <option value="pt">Portuguese</option>
-                            </select>
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="timeZones" class="form-label">Timezone</label>
-                            <select id="timeZones" class="select2 form-select">
-                              <option value="">Select Timezone</option>
-                              <option value="-12">(GMT-12:00) International Date Line West</option>
-                              <option value="-11">(GMT-11:00) Midway Island, Samoa</option>
-                              <option value="-10">(GMT-10:00) Hawaii</option>
-                              <option value="-9">(GMT-09:00) Alaska</option>
-                              <option value="-8">(GMT-08:00) Pacific Time (US & Canada)</option>
-                              <option value="-8">(GMT-08:00) Tijuana, Baja California</option>
-                              <option value="-7">(GMT-07:00) Arizona</option>
-                              <option value="-7">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-                              <option value="-7">(GMT-07:00) Mountain Time (US & Canada)</option>
-                              <option value="-6">(GMT-06:00) Central America</option>
-                              <option value="-6">(GMT-06:00) Central Time (US & Canada)</option>
-                              <option value="-6">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-                              <option value="-6">(GMT-06:00) Saskatchewan</option>
-                              <option value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-                              <option value="-5">(GMT-05:00) Eastern Time (US & Canada)</option>
-                              <option value="-5">(GMT-05:00) Indiana (East)</option>
-                              <option value="-4">(GMT-04:00) Atlantic Time (Canada)</option>
-                              <option value="-4">(GMT-04:00) Caracas, La Paz</option>
-                            </select>
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="currency" class="form-label">Currency</label>
-                            <select id="currency" class="select2 form-select">
-                              <option value="">Select Currency</option>
-                              <option value="usd">USD</option>
-                              <option value="euro">Euro</option>
-                              <option value="pound">Pound</option>
-                              <option value="bitcoin">Bitcoin</option>
-                            </select>
+                            <label for="zipCode" class="form-label">나머지 주소</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="otherAddress"
+                              name="otherAddress"
+                              placeholder="231465"
+                              maxlength="6"
+                            />
                           </div>
                         </div>
                         <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                          <button type="submit" class="btn btn-outline-primary me-2"><a href="admember">수정하기</a></button>
+                          <button type="reset" class="btn btn-outline-secondary"><a href="admember">뒤로가기</a></button>
                         </div>
                       </form>
                     </div>
                     <!-- /Account -->
                   </div>
                   <div class="card">
-                    <h5 class="card-header">Delete Account</h5>
+                    <h5 class="card-header">회원 삭제</h5>
                     <div class="card-body">
                       <div class="mb-3 col-12 mb-0">
                         <div class="alert alert-warning">
-                          <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                          <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                          <h6 class="alert-heading fw-bold mb-1">정말로 계정을 삭제하시겠습니까?</h6>
+                          <p class="mb-0">계정을 삭제하면 되돌릴 수 없습니다. 확실하게 해주세요.</p>
                         </div>
                       </div>
                       <form id="formAccountDeactivation" onsubmit="return false">
@@ -235,42 +266,29 @@
                             id="accountActivation"
                           />
                           <label class="form-check-label" for="accountActivation"
-                            >I confirm my account deactivation</label
+                            >계정 비활성화를 확인합니다</label
                           >
                         </div>
-                        <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                        <button type="submit" class="btn btn-danger deactivate-account">계정 비활성화</button>
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- / Content -->
-
-            <!-- Footer -->
             
-            <!-- / Footer -->
+            <hr class="my-5" />
 
-            <div class="content-backdrop fade"></div>
+            <!-- footer section -->
+         <jsp:include page="footer.jsp"></jsp:include>
           </div>
           <!-- Content wrapper -->
         </div>
         <!-- / Layout page -->
-      </div>
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
     <!-- / Layout wrapper -->
-
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -288,7 +306,6 @@
     <script src="/admin/sneat/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="/admin/sneat/assets/js/pages-account-settings-account.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

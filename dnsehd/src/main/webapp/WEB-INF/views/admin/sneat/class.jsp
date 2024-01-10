@@ -69,7 +69,7 @@
               <!-- Bootstrap Table with Caption -->
               <div class="card">
                  <h5 class="card-header">수업관리
-                 <a href="addclass ">
+                 <a href="adclass ">
                    <button type="button" class="btn btn-outline-primary btn-pinned">
                      <span class="tf-icons bx bx-plus"></span>&nbsp; 추가하기
                    </button>
@@ -318,7 +318,7 @@
               <hr class="my-5" />
 
             <!-- footer section -->
-			<jsp:include page="footer.jsp"></jsp:include>
+         <jsp:include page="footer.jsp"></jsp:include>
 
             <div class="content-backdrop fade"></div>
           </div>

@@ -81,6 +81,22 @@ public class TestController {
 		return "sbadminPro_sample/knowledge-base-article";
 	}	
 	
+	// 2-4. sneat 원본 view와 맵핑
+	@GetMapping("/ui-alerts")
+	public String uiAlerts() {
+		return "sneat_sample/ui-alerts";
+	}
+
+	@GetMapping("/ui-toasts")
+	public String uiToasts() {
+		return "sneat_sample/ui-toasts";
+	}
+	
+	@GetMapping("/ui-modals")
+	public String uiModals() {
+		return "sneat_sample/ui-modals";
+	}
+	
 	// 3. 디자인 테스트용으로 수정한 view와 맵핑
 // (복붙해서 사용)
 //	@GetMapping("/")
@@ -164,9 +180,19 @@ public class TestController {
 	public String addReview() {
 		return "designTest/addReview";
 	}
+
+	 */
+
+	@GetMapping("/alarm")
+	public String alarmTest() {
+		return "designTest/alarm";
+	}
 	
-	*/
-	
+	@GetMapping("/alarmBody") 
+	public String alarmBody() {
+		return "designTest/alarmBody";
+	}
+
 	// 4. admin view와 맵핑
 	// ..을 고쳐서 사용
 //	@GetMapping("/ad..")
@@ -203,6 +229,5 @@ public class TestController {
 	public String  adminmodifyMember() {
 		return "admin/sneat/modifyMember";
 	}
-	
 	
 }
