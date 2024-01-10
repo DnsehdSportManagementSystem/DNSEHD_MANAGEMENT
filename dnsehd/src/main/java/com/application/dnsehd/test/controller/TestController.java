@@ -200,22 +200,22 @@ public class TestController {
 //		return "admin/sneat/..";
 //	}
 	
-	@GetMapping("/admain")
+	@GetMapping("/adMain")
 	public String  adminMain() {
 		return "admin/sneat/main";
 	}
 	
-	@GetMapping("/admember")
+	@GetMapping("/adMember")
 	public String  adminMember() {
 		return "admin/sneat/member";
 	}
 	
-	@GetMapping("/adlogin")
+	@GetMapping("/adLogin")
 	public String  adminLogin() {
 		return "admin/sneat/login";
 	}
 	
-	@GetMapping("/adclass")
+	@GetMapping("/adClass")
 	public String  adminClass() {
 		return "admin/sneat/class";
 	}
@@ -225,9 +225,14 @@ public class TestController {
 		return "admin/sneat/test";
 	}
 	
-	@GetMapping("/admodifyMember")
-	public String  adminmodifyMember() {
+	@GetMapping("/adModifyMember")
+	public String  adminModifyMember() {
 		return "admin/sneat/modifyMember";
+	}
+	
+	@GetMapping("/adAddClass")
+	public String  adminAddClass() {
+		return "admin/sneat/adClass";
 	}
 	
 }

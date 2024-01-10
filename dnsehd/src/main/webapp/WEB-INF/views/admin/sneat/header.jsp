@@ -78,48 +78,48 @@
             <ul class="menu-inner py-1">
 	            <!-- main -->
 	            <li class="menu-item px-3">
-	              <a href="admain" class="menu-link">
+	              <a href="adMain" class="menu-link">
 	                 <div>메인</div>
 	              </a>
 	            </li>
 	            <!-- Tables -->
 	            <li class="menu-item px-3">
-              		<a href="admember" class="menu-link">
+              		<a href="adMember" class="menu-link">
                 		<div>회원관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adclass" class="menu-link">
+              		<a href="adClass" class="menu-link">
                 		<div>수업관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>강사관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>수업후기관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>이벤트관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>예약관리</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>공지사항</div>
               		</a>
             	</li>
             	<li class="menu-item px-3">
-              		<a href="adtable" class="menu-link">
+              		<a href="adTable" class="menu-link">
                 		<div>FAQ</div>
               		</a>
             	</li>
